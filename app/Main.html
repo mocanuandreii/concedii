@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang='en' class=''>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://gitcdn.xyz/cdn/angular/bower-material/v1.1.26/angular-material.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-messages.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+    <script src="https://gitcdn.xyz/cdn/angular/bower-material/v1.1.26/angular-material.js"></script>
+    <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-alpha1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+
+    <meta charset='UTF-8'><meta name="robots" content="noindex">
+
+    <script src="/js/mainCtrl.js"></script>
+
+    <link rel="stylesheet" href="/css/Main.css"/>
+
+</head>
+
+<body ng-app="myApp" ng-controller="mainCtrl as ctrl">
+
+<ul class="nav sticky-top">
+    <li class="nav-item">
+        <a class="nav-link active" href="Main.html">Vacation</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="Profile.html">My Profile</a>
+    </li>
+</ul>
+
+<div class="container">
+    <div class="mx-auto">
+        <h2 style="padding-top: 20px;">This year you have {{vacationDays}} vacation days remaining.</h2>
+<md-content layout="column" layout-gt-sm="row" layout-padding="" ng-cloak="" class="datepickerdemoCalendar">
+    <div layout="column" flex-order="1" flex-order-gt-sm="0">
+        <md-subheader>Start Date</md-subheader>
+        <md-calendar md-min-date="minDate" ng-model="startDate"></md-calendar>
+    </div>
+    <div layout="column" flex-order="1" flex-order-gt-sm="1">
+        <md-subheader>End Date</md-subheader>
+        <md-calendar md-min-date="minDate" ng-model="endDate"></md-calendar>
+    </div>
+
+    <div layout="column" flex-order="0" flex-order-gt-sm="2">
+        <md-subheader>Dates</md-subheader>
+        <div>
+            <label>Start</label>
+            <div>{{startDate | date:shortDate}}</div>
+        </div>
+
+        <div><label>End</label>
+            <div>{{endDate | date:shortDate}}</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-large" ng-click="addVacation()">Generate</button>
+    </div>
+</md-content>
+</div>
+</div>
+
+<div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
+
+    <script type="text/ng-template" id="dialogDOW.tmpl.html"><md-dialog aria-label="Mango (Fruit)">
+        <form ng-cloak>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2 style="text-align: center;">Cerere pentru concediu de odihna</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+            <md-dialog-content>
+                <div class="md-dialog-content">
+                <div id="printSectionId">
+                    <br>
+                    <p>Stimate Domnule Director,</p>
+                    <p>Subsemnatul(a) <i>{{name}}</i> angajat(a) al/a firmei <i>SC {{company_name}} SRL</i> in functia de <i>{{role}}</i>, va rog sa-mi aprobati concediul de odihna in perioada cuprinsa intre <b>{{startDate}}</b> si <b>{{endDate}}</b>, respectiv {{workingDays}} zile lucratoare.</p>
+                    <p>Va multumesc.</p>
+                    <p>Cu stima,<br>
+                        <b>{{name}}</b><br>
+                    Data,<br>
+                        <b>{{currentDate}}</b></p>
+                </div>
+                </div>
+            </md-dialog-content>
+
+            <md-dialog-actions layout="row">
+                <span flex></span>
+
+                <md-button ng-click="sendMail()">
+                    Send Mail
+                </md-button>
+
+                <md-button ng-click="printToCart('printSectionId')">
+                    Print
+                </md-button>
+                <md-button ng-click="download2('printSectionId')">
+                    Download
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+    </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+body {
+    width: 100%;
+    height:100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.datepickerdemoCalendar {
+    align-items: center; }
+.datepickerdemoCalendar label {
+    font-size: x-small; }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+h2 {
+    color: #212529;
+}
+li a:hover {
+    background-color: #111;
+}
+.center {
+    margin: auto;
+    padding: 10px;
+}
+.nav{
+    max-width: max-content;
+}
